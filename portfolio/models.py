@@ -5,6 +5,8 @@ from django.utils.text import slugify
 class PortfolioProject(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
+    seo_title = models.CharField(max_length=200, blank=True)
+    meta_description = models.CharField(max_length=160, blank=True)
     short_description = models.TextField()
     full_description = models.TextField()
     featured_image = models.ImageField(upload_to='portfolio/', blank=True, null=True)
@@ -29,6 +31,14 @@ class PortfolioProject(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def effective_seo_title(self):
+        return self.seo_title or self.title
+
+    @property
+    def effective_meta_description(self):
+        return self.meta_description or self.short_description
 
     class Meta:
         ordering = ['order', '-created_at']

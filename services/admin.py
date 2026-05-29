@@ -30,7 +30,7 @@ class ServiceOfferingAdminForm(forms.ModelForm):
 class ServiceOfferingAdmin(admin.ModelAdmin):
     form = ServiceOfferingAdminForm
     list_display = ['title', 'slug', 'featured', 'active', 'order', 'created_at']
-    search_fields = ['title', 'short_description', 'description']
+    search_fields = ['title', 'seo_title', 'meta_description', 'short_description', 'description']
     list_filter = ['featured', 'active']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['order', '-created_at']

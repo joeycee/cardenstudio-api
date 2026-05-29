@@ -17,7 +17,7 @@ class BlogPostAdminForm(forms.ModelForm):
 class BlogPostAdmin(admin.ModelAdmin):
     form = BlogPostAdminForm
     list_display = ['title', 'slug', 'published', 'featured', 'published_at', 'created_at']
-    search_fields = ['title', 'excerpt', 'content']
+    search_fields = ['title', 'seo_title', 'meta_description', 'excerpt', 'content']
     list_filter = ['published', 'featured']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['-published_at', '-created_at']

@@ -5,6 +5,8 @@ from django.utils.text import slugify
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
+    seo_title = models.CharField(max_length=200, blank=True)
+    meta_description = models.CharField(max_length=160, blank=True)
     excerpt = models.TextField()
     content = models.TextField()
     featured_image = models.ImageField(upload_to='blog/', blank=True, null=True)
@@ -27,6 +29,14 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def effective_seo_title(self):
+        return self.seo_title or self.title
+
+    @property
+    def effective_meta_description(self):
+        return self.meta_description or self.excerpt
 
     class Meta:
         ordering = ['-published_at', '-created_at']

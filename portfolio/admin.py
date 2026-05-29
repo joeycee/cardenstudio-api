@@ -30,7 +30,7 @@ class PortfolioProjectAdminForm(forms.ModelForm):
 class PortfolioProjectAdmin(admin.ModelAdmin):
     form = PortfolioProjectAdminForm
     list_display = ['title', 'slug', 'featured', 'active', 'order', 'created_at']
-    search_fields = ['title', 'short_description', 'full_description']
+    search_fields = ['title', 'seo_title', 'meta_description', 'short_description', 'full_description']
     list_filter = ['featured', 'active']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['order', '-created_at']

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import robots_txt, sitemap_xml
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,8 @@ urlpatterns = [
     path('api/blog/', include('blog.urls')),
     path('api/portfolio/', include('portfolio.urls')),
     path('api/contact/', include('contact.urls')),
+    path('robots.txt', robots_txt, name='robots-txt'),
+    path('sitemap.xml', sitemap_xml, name='sitemap-xml'),
 ]
 
 if settings.DEBUG:
